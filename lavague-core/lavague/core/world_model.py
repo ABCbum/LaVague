@@ -2,8 +2,9 @@ from __future__ import annotations
 import os
 from abc import ABC
 from llama_index.core import PromptTemplate
+from llama_index.core.base.llms.types import ImageBlock
 from llama_index.core.multi_modal_llms import MultiModalLLM
-from llama_index.legacy.readers.file.base import SimpleDirectoryReader
+from llama_index.core.readers.file.base import SimpleDirectoryReader
 from lavague.core.context import Context, get_default_context
 from lavague.core.logger import AgentLogger, Loggable
 from functools import lru_cache
@@ -433,8 +434,9 @@ class WorldModel(ABC, Loggable):
         start = time.time()
 
         with time_profiler("World Model Inference", prompt_size=len(prompt)):
+            image_blocks = [ImageBlock(path=image_document.image_path) for image_document in image_documents]
             mm_llm_output = mm_llm.complete(
-                prompt, image_documents=image_documents
+                prompt, image_documents=image_blocks
             ).text
 
         end = time.time()
