@@ -29,6 +29,7 @@ lavague-core = { path = "./lavague-core" }
 lavague-drivers-selenium = "^0.2.12"
 lavague-contexts-openai = { path = "./lavague-integrations/contexts/lavague-contexts-openai" }
 lavague-gradio = "^0.2.8"
+lavague-drivers-playwright = { path = "./lavague-integrations/drivers/lavague-drivers-playwright" }
 
 [tool.poetry.dev-dependencies]
 ruff = "^0.2.2"
