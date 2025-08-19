@@ -25,9 +25,9 @@ packages = [{from = "_lavague", include = "lavague"}]
 
 [tool.poetry.dependencies]
 python = "^3.10.0"
-lavague-core = { path = "../lavague-core" }
+lavague-core = { path = "./lavague-core" }
 lavague-drivers-selenium = "^0.2.12"
-lavague-contexts-openai = { path = "../lavague-integrations/contexts/lavague-contexts-openai" }
+lavague-contexts-openai = { path = "./lavague-integrations/contexts/lavague-contexts-openai" }
 lavague-gradio = "^0.2.8"
 
 [tool.poetry.dev-dependencies]
