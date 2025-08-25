@@ -184,6 +184,7 @@ class PlaywrightDriver(BaseDriver):
         outputs = []
         for element in elements:
             element: Locator
+            element = element.element_handles()[0]
 
             bounding_box = {}
             viewport_size = {}
@@ -256,7 +257,7 @@ class PlaywrightDriver(BaseDriver):
         args = list(arg for arg in args)
         for i, arg in enumerate(args):
             if type(arg) == Locator:
-                args[i] = arg.element_handle()  # playwright only accept element_handles
+                args[i] = arg.element_handles()[0]  # playwright only accept element_handles
         script = f"(arguments) => {{{js_code}}}"
         return self.page.evaluate(script, args)
 

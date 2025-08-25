@@ -14,7 +14,7 @@ from lavague.core.base_driver import BaseDriver
 from lavague.core.logger import AgentLogger
 from lavague.core.base_engine import BaseEngine, ActionResult
 
-from llama_index.legacy.readers.file.base import SimpleDirectoryReader
+from llama_index.core import SimpleDirectoryReader
 from llama_index.multi_modal_llms.openai import OpenAIMultiModal
 from llama_index.core import Document, VectorStoreIndex
 from llama_index.core.base.llms.base import BaseLLM

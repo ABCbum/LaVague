@@ -1,39 +1,65 @@
 [build-system]
-build-backend = "poetry.core.masonry.api"
-requires = ["poetry-core"]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
-[tool.poetry]
+[project]
 name = "lavague"
 version = "1.1.20"
 description = "automation code generation from text instructions"
-authors = ["lavague-ai"]
+authors = [{ name = "lavague-ai" }]
+requires-python = ">=3.10.0,<4"
 readme = "README.md"
 license = "Apache-2.0"
-classifiers = [
-  "Development Status :: 3 - Alpha",
-  "Intended Audience :: Developers",
-  "Topic :: Scientific/Engineering :: Artificial Intelligence",
-  "Topic :: Software Development :: Libraries :: Application Frameworks",
-  "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: OSI Approved :: Apache Software License",
+keywords = [
+    "LAM",
+    "action",
+    "automation",
+    "LLM",
+    "NLP",
+    "RAG",
+    "selenium",
+    "playwright",
 ]
-keywords = ["LAM", "action", "automation", "LLM", "NLP", "RAG", "selenium", "playwright"]
-homepage = "https://mithrilsecurity.io"
-repository = "https://github.com/lavague-ai/LaVague/"
-documentation = "https://docs.lavague.ai/en/latest/"
-packages = [{from = "_lavague", include = "lavague"}]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Software Development :: Libraries :: Application Frameworks",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "lavague-core",
+    "lavague-drivers-selenium>=0.2.12,<0.3",
+    "lavague-contexts-openai",
+    "lavague-gradio>=0.2.8,<0.3",
+    "lavague-drivers-playwright",
+]
 
-[tool.poetry.dependencies]
-python = "^3.10.0"
-lavague-core = { path = "./lavague-core" }
-lavague-drivers-selenium = "^0.2.12"
-lavague-contexts-openai = { path = "./lavague-integrations/contexts/lavague-contexts-openai" }
-lavague-gradio = "^0.2.8"
-lavague-drivers-playwright = { path = "./lavague-integrations/drivers/lavague-drivers-playwright" }
+[project.urls]
+Homepage = "https://mithrilsecurity.io"
+Repository = "https://github.com/lavague-ai/LaVague/"
+Documentation = "https://docs.lavague.ai/en/latest/"
 
-[tool.poetry.dev-dependencies]
-ruff = "^0.2.2"
+[dependency-groups]
+dev = [
+    "ruff>=0.2.2,<0.3",
+    "ipykernel>=6.29.4,<7",
+]
 
-[tool.poetry.group.dev.dependencies]
-ipykernel = "^6.29.4"
+[tool.uv]
+
+[tool.uv.sources]
+lavague-core = { path = "./lavague-core", editable = true }
+lavague-contexts-openai = { path = "./lavague-integrations/contexts/lavague-contexts-openai", editable = true }
+lavague-drivers-playwright = { path = "./lavague-integrations/drivers/lavague-drivers-playwright", editable = true }
+
+[tool.hatch.build.targets.sdist]
+include = ["_lavague/lavague"]
+
+[tool.hatch.build.targets.wheel]
+include = ["_lavague/lavague"]
+
+[tool.hatch.build.targets.wheel.sources]
+"_lavague/lavague" = "lavague"
 
