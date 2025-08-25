@@ -525,6 +525,8 @@ class WebAgent:
             self.interrupted = True
             pass
         except Exception as e:
+            import traceback
+            print(traceback.format_exc())
             logging_print.error(f"Error while running the agent: {e}")
             self.interrupted = True
             raise e

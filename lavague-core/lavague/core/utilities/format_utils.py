@@ -111,6 +111,7 @@ def extract_world_model_instruction(text):
         r"### Instruction:\s*```(.*?)```",  # For block of text within triple backticks with ### prefix
         r"Instruction:\s*(.*)",  # For single-line instructions
         r"### Instruction:\s*(.*)",  # For single-line instructions with ### prefix
+        r"instruction:\s*(.*)"
     ]
 
     longest_instruction = ""
@@ -164,7 +165,7 @@ def extract_before_next_engine(text: str) -> str:
 def extract_next_engine(text: str, next_engines: List[str] = DEFAULT_ENGINES) -> str:
     # Use a regular expression to find the content after "Next engine:"
 
-    next_engine_patterns = [r"Next engine:\s*(.*)", r"### Next Engine:\s*(.*)"]
+    next_engine_patterns = [r"Next engine:\s*(.*)", r"### Next Engine:\s*(.*)", r"next_engine:\s*(.*)"]
 
     for pattern in next_engine_patterns:
         next_engine_match = re.search(pattern, text)

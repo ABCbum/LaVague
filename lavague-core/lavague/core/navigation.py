@@ -345,6 +345,8 @@ class NavigationEngine(BaseEngine):
                 action_outcome["success"] = True
                 navigation_log["vision_data"] = vision_data
             except Exception as e:
+                import traceback
+                print(traceback.format_exc())
                 logging_print.error(f"Navigation error: {e}")
                 action_outcome["success"] = False
                 action_outcome["error"] = str(e)
@@ -513,6 +515,8 @@ class NavigationEngine(BaseEngine):
                 action_outcome["success"] = True
                 navigation_log["vision_data"] = vision_data
             except Exception as e:
+                import traceback
+                print(traceback.format_exc())
                 logging_print.error(f"Navigation error: {e}")
                 action_outcome["success"] = False
                 action_outcome["error"] = str(e)
@@ -605,6 +609,8 @@ class NavigationControl(BaseEngine):
                 raise ValueError(f"Unknown instruction: {instruction}")
 
         except NavigationException as e:
+            import traceback
+            print(traceback.format_exc())
             success = False
             output = str(e)
             logging_print.error(f"Navigation error: {e}")
